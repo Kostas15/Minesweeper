@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Easy Level</title>
+  <script src="easy.js" charset="utf-8"></script>
+  <!-- link google fonts and effects using external CSS  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong&effect=fire|neon|outline|emboss|shadow-multiple">
+  <style>
+      body{
+        background-image: url(https://cdn.wallpapersafari.com/66/50/uQNlEf.jpg);
+        background-size: 1920px;
+      }
+      #header{
+        text-align: center;
+        width: 350px;
+        margin: auto;
+      }
+      h1{
+        text-align: center;
+        font-family: "Trirong";
+        color: rgb(238, 84, 200);
+        font-size: 50px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-weight: 700;
+        border-radius: 10px;
+      } 
+      .container {
+        width: 695px;
+        align-content: center;
+        margin: auto;
+      }
+
+      .grid {
+        height: 600px;
+        width: 595px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgb(224, 215, 172);
+        margin-left: 50px;
+        margin-top: 20px;
+        border: 10px solid rgb(82, 238, 108);
+        margin-bottom: 10px;
+      }
+
+      div {
+        font-size: 25px;
+        text-align: center;
+        font-family: "Trirong";
+
+      }
+      .valid {
+        height: 85px;
+        width: 85px;
+        border: 5px solid;
+        border-color: #f5b5e0 #8b0985  #d41bbc #f56fd3; 
+        box-sizing: border-box;
+      }
+
+      .checked {
+        height: 85px;
+        width: 85px;
+        border: 5px solid;
+        background-color: rgb(221, 248, 198);
+        border-color: #a2f397 #428b45  #48a731 #54c45d;
+        
+        box-sizing: border-box;
+      }
+      .bomb {
+        height: 85px;
+        width: 85px;
+        border: 5px solid;
+        border-color: #f5b5e0 #8b0985  #d41bbc #f56fd3;
+        box-sizing: border-box;
+      }
+      .one {
+        color: rgb(235, 101, 38);
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .two {
+        color: rgb(52, 151, 184);
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .three {
+        color: rgb(29, 134, 29);
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .four{
+        color: rgb(172, 73, 172);
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .five{
+        color :rgb(210, 105, 30);
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .six{
+        color: rgb(165, 42, 42);
+        font-weight: bold;
+        font-size: 30px;
+      }
+      #new{
+          padding: 20px;
+          background-color: rgb(220, 214, 188);
+          border: 8px solid;
+          border-color: #f5b5e0 #8b0985  #d41bbc #f56fd3;
+          font-size: 25px;
+          font-weight: 600;
+          font-family: "Trirong"; 
+          color: rgb(33, 90, 112);
+          position: absolute;
+          right: 10%;
+          top: 5%;
+      }
+      #flag{
+        width: 200px;
+        height: 40px;
+        background-color: rgb(226, 224, 216);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        border: 8px solid;
+        border-color: #4bee74 #40974e  #34993c #50f85e;
+        font-weight: bold;
+        color: rgb(33, 90, 112);
+      }
+      #timer{
+        text-align: center;
+        margin-top: 65px;
+        color: rgb(33, 90, 112);
+        
+      }
+      #container{
+        width: 220px;
+        height: 220px;
+        background-color: rgb(220, 214, 188);
+        border: 8px solid rgb(245, 112, 212);
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        
+      }
+      #again{
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 220px;
+        background-color: rgb(61, 228, 83);
+        border-radius: 10px;
+      }
+      a{
+        text-decoration: none;
+        color: rgb(243, 65, 199);
+        font-weight: bold;
+        font-size: 30px;
+      }
+
+      .modal-containerL{
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: 300ms ease;
+       }
+       .modalL{
+            background-color: rgb(245, 112, 212);
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 700px;
+            max-width: 80%;
+            transition: 300ms ease;
+        }
+        .modal-containerL.show{
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .modal-headerL{
+            width: 700px;
+        }
+        .titleL{
+            font-family: "Trirong";
+            font-size: 60px;
+            font-weight: bolder;
+        }
+
+        .modal-containerW{
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: 300ms ease;
+       }
+       .modalW{
+            background-color: rgb(233, 213, 35);
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 700px;
+            max-width: 80%;
+            transition: 300ms ease;
+        }
+        .modal-containerW.show{
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .modal-headerW{
+            width: 700px;
+            height: 390px;
+            background-size: 700px;
+            background-image: url(https://st4.depositphotos.com/9625262/19860/v/600/depositphotos_198604266-stock-video-you-win-word-retro-cartoon.jpg);         
+        }
+        
+     
+  </style>
+</head>
+<body>
+  
+  <div id="header"><h1>MineSweeper</h1></div>
+  <div class="container">
+    <div class="grid"></div>
+    
+    <div id="flag">Flags left: <span id='flags-left'></span></div>
+    
+  </div>
+  <button id="new" onclick="myButton()">Play Again</button>
+  
+  <div id="container">
+    <h2 id="timer">Time: </h2>
+  </div>
+
+  <div id="again">
+    <a id="back" href="menu.html">Back to menu</a>
+  </div>
+
+
+  <div class="modal-containerL" id="modal-containerL">
+    <div class="modalL">
+    <div class="modal-headerL">
+        <div class="titleL">GAME OVER</div>
+    </div>
+        <div class="modal-bodyL">
+          <button id="new" onclick="myButton()">Play Again</button>
+          <div id="again">
+          <a id="back" href="menu.html">Back to menu</a>
+          </div>
+        </div>
+    </div>    
+  </div>
+
+<div class="modal-containerW" id="modal-containerW">
+  <div class="modalW">
+  <div class="modal-headerW"></div>
+      <div class="modal-bodyW">
+        <button id="new" onclick="myButton()">Play Again</button>
+        <div id="again">
+        <a id="back" href="menu.html">Back to menu</a>
+        </div>
+      </div>
+  </div>    
+</div>
+
+
+
+
+  <script>
+
+    function myButton(){
+      location.reload();
+    }
+
+
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link google fonts and effects using external CSS  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong&effect=fire|neon|outline|emboss|shadow-multiple">
+    <title>Welcome</title>
+    <style>
+        body{
+            background-image: url(https://image.shutterstock.com/image-vector/pixel-background-texture-bright-copy-260nw-401410804.jpg);
+            background-size: 1300px;
+        }
+        #header{
+            text-align: center;
+            width: 32%;
+            margin: auto;
+        }
+        h1{
+            font-family: "Trirong";
+            color: rgb(50, 156, 205);
+            font-size: 60px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background-color: azure;
+            border-radius: 10px;
+            border:5px solid rgb(50, 156, 205);
+        } 
+        nav{
+            
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            right: 30%;
+            border-radius: 10px;
+            align-content: center;
+        }
+        
+        a{
+            display: block;
+            float: none; 
+            padding: 20px;
+            margin: 70px;
+            text-decoration: none;
+            font-family: "Trirong";
+            font-size: 50px;
+            font-weight: bolder;
+            text-align: center;
+            border: 5px solid rgb(50, 156, 205);
+            border-radius: 10px;
+        }
+        #pink{
+            color: rgb(243, 65, 199);
+            background-color: rgb(61, 228, 83);
+        }
+        #blue{
+            color: rgb(255, 255, 255);
+            background-color: rgb(77, 180, 221);
+        }
+        #orange{
+            color: rgb(247, 138, 65);
+            background-color: purple;
+        }
+       #open-button{
+           position: absolute;
+           top: 5%;
+           right: 5%;
+           margin: 20px;
+           padding: 10px 30px;
+           background-color: azure;
+           color: rgb(50, 156, 205);
+           font-family: "Trirong";
+           font-weight: bolder;
+           font-size: 35px;
+           border: 5px solid rgb(50, 156, 205);
+           border-radius: 10px;
+           transition: 0.4s;
+       }
+       
+       .modal-container{
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: 300ms ease;
+       }
+       .modal{
+            background-color: aliceblue;
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 700px;
+            max-width: 80%;
+            transition: 300ms ease;
+        }
+        .modal-container.show{
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .modal-header{
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title{
+            font-family: "Trirong";
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .close-button{
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .modal-body{
+           font-family: "Trirong";
+           padding: 10px 15px;
+           font-size: 20px;
+        }
+      
+    </style>
+</head>
+<body>
+    
+    <div id="header"><h1>MineSweeper</h1></div>
+    <nav>
+        <a id="pink" href="easy.html">Easy</a>
+        <a id="blue" href="medium.html">Medium</a>
+        <a id="orange" href="hard.html">Hard</a>
+    </nav>
+    
+    
+
+    <button id="open-button">Help</button>
+       
+        <div class="modal-container" id="modal-container">
+            <div class="modal">
+            <div class="modal-header">
+                <div class="title">Description</div>
+                <button id="close-button" class="close-button"> &times;</button>
+            </div>
+                <div class="modal-body">
+                
+                    In Minesweeper, mines are scattered throughout a board, which is divided into cells.
+                    Cells have three states: uncovered, covered and flagged. A covered cell is 
+                    blank and clickable, while an uncovered cell is exposed. Flagged cells are those marked by the player to 
+                    indicate a potential mine location.A player left-clicks a cell to uncover it. If a player uncovers a mined 
+                    cell, the game ends, as there is only 1 life per game. Otherwise, the uncovered cells
+                    displays either a number, indicating the quantity 
+                    of mines diagonally or orthogonally adjacent to it, or a blank tile, and all adjacent non-mined 
+                    cells will automatically be uncovered. Right-clicking on a cell will flag it, causing a flag to appear on it. 
+                    Flagged cells are still considered covered, and a player can click on them to uncover them, but
+                    they must first be unflagged with an additional right-click. <br>
+                    <br>
+                    To win the game, the player must flag all the mined cells.
+                
+                </div>
+            </div>    
+        </div>
+        
+    
+    <script>
+            const open = document.getElementById('open-button');
+            const close = document.getElementById('close-button');
+            const modal_container = document.getElementById('modal-container');
+
+            
+            open.addEventListener('click', () => {
+                modal_container.classList.add('show');
+            })
+
+            close.addEventListener('click', () => {
+                modal_container.classList.remove('show');
+            })
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Medium Level</title>
+  <script src="medium.js" charset="utf-8"></script>
+  <!-- link google fonts and effects using external CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong&effect=fire|neon|outline|emboss|shadow-multiple">
+  <style>
+      body{
+        background-image: url(https://th.bing.com/th/id/R4a0f375d282d8ff637957a8c0b09f02c?rik=ur3ZgiW3HBRGqQ&riu=http%3a%2f%2fwww.08lr.cn%2fuploads%2fallimg%2f180411%2f1-1P4110R256.jpg&ehk=9qm7fEQ4rIV4KBJe8TmtUHmt%2b2uOSPN%2bbC8DMaGkFlc%3d&risl=&pid=ImgRaw);
+        background-size: 1920px;
+      }
+      #header{
+        text-align: center;
+        width: 350px;
+        margin: auto;
+      }
+      h1{
+        text-align: center;
+        font-family: "Trirong";
+        color: rgb(255, 255, 255);
+        font-size: 45px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        
+        border-radius: 10px;
+      } 
+      .container {
+        width: 700px;
+        align-content: center;
+        margin: auto;
+      }
+
+      .grid {
+        height: 600px;
+        width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgb(224, 215, 172);
+        margin-left: 50px;
+        margin-top: 20px;
+        border: 10px solid rgb(77, 180, 221);
+        margin-bottom: 10px;
+      }
+
+      div {
+        font-size: 25px;
+        text-align: center;
+        font-family: "Trirong";
+
+      }
+      .valid {
+        height: 60px;
+        width: 60px;
+        border: 5px solid;
+        border-color: #97d9f3 #5980c9  #74b4e7 #53c6f3;
+        box-sizing: border-box;
+      }
+
+      .checked {
+        height: 60px;
+        width: 60px;
+        border: 5px solid;
+        background-color: rgb(195, 241, 158);
+        border-color: #97d9f3 #5980c9  #74b4e7 #53c6f3;
+        
+        box-sizing: border-box;
+      }
+      .bomb {
+        height: 60px;
+        width: 60px;
+        border: 5px solid;
+        border-color: #97d9f3 #5980c9  #74b4e7 #53c6f3;
+        box-sizing: border-box;
+      }
+      .one {
+        color: rgb(235, 101, 38);
+        font-weight: bold;
+      }
+      .two {
+        color: rgb(44, 165, 206);
+        font-weight: bold;
+      }
+      .three {
+        color: rgb(19, 114, 19);
+        font-weight: bold;
+      }
+      .four{
+        color: rgb(172, 73, 172);
+        font-weight: bold;
+      }
+      .five{
+        color :rgb(210, 105, 30);
+        font-weight: bold;
+      }
+      .six{
+        color: rgb(165, 42, 42);
+        font-weight: bold;
+      }
+      #result {
+        font-weight: 700;
+        background-color: rgb(233, 61, 61);
+        color: black;
+        margin-top: 5px;
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #new{
+          padding: 20px;
+          background-color: #dcd6bc;
+          border: 8px solid;
+          border-color: #97d9f3 #5980c9  #74b4e7 #53c6f3;
+          font-size: 25px;
+          font-weight: 600;
+          font-family: "Trirong";
+          color: rgb(33, 90, 112);
+          position: absolute;
+          right: 10%;
+          top: 5%;
+      }
+      #flag{
+        width: 200px;
+        height: 40px;
+        background-color: #e2e0d8;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        border: 8px solid;
+        border-color: #97d9f3 #5980c9  #74b4e7 #53c6f3;
+        font-weight: bold;
+        color: rgb(33, 90, 112);
+      }
+      #timer{
+        text-align: center;
+        margin-top: 65px;
+        color: rgb(33, 90, 112);
+        
+      }
+      #container{
+        width: 220px;
+        height: 220px;
+        background-color: #dcd6bc;
+        border: 8px solid rgb(77, 180, 221);
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        
+      }
+      #again{
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 220px;
+        background-color: lightblue;
+        border-radius: 10px;
+      }
+      a{
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 30px;
+      }
+
+      .modal-containerL{
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: 300ms ease;
+       }
+       .modalL{
+            background-color: aliceblue;
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 700px;
+            max-width: 80%;
+            transition: 300ms ease;
+        }
+        .modal-containerL.show{
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .modal-headerL{
+            width: 700px;
+        }
+        .titleL{
+            font-family: "Trirong";
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .modal-containerW{
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: 300ms ease;
+       }
+       .modalW{
+            background-color: rgb(233, 213, 35);
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 700px;
+            max-width: 80%;
+            transition: 300ms ease;
+        }
+        .modal-containerW.show{
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .modal-headerW{
+            width: 700px;
+            height: 390px;
+            background-size: 700px;
+            background-image: url(https://st4.depositphotos.com/9625262/19860/v/600/depositphotos_198604266-stock-video-you-win-word-retro-cartoon.jpg);         
+        }
+        
+  </style>
+</head>
+<body>
+  
+  <div id="header"><h1>MineSweeper</h1></div>
+  <div class="container">
+    <div class="grid"></div>
+    
+    <div id="flag">Flags left: <span id='flags-left'></span></div>
+    <div id="result"></div>
+  </div>
+  <button id="new" onclick="myButton()">Play Again</button>
+  
+  <div id="container">
+    <h2 id="timer">Time: </h2>
+  </div>
+
+  <div id="again">
+    <a id="back" href="menu.html">Back to menu</a>
+  </div>
+
+
+  <div class="modal-containerL" id="modal-containerL">
+    <div class="modalL">
+    <div class="modal-headerL">
+        <div class="titleL">GAME OVER</div>
+    </div>
+        <div class="modal-bodyL">
+          <button id="new" onclick="myButton()">Play Again</button>
+          <div id="again">
+          <a id="back" href="menu.html">Back to menu</a>
+          </div> 
+        </div>
+    </div>    
+  </div>
+
+<div class="modal-containerW" id="modal-containerW">
+  <div class="modalW">
+  <div class="modal-headerW"></div>
+      <div class="modal-bodyW">
+        <button id="new" onclick="myButton()">Play Again</button>
+        <div id="again">
+        <a id="back" href="menu.html">Back to menu</a>
+        </div> 
+      </div>
+  </div>    
+</div>
+
+  <script>
+
+    function myButton(){
+      location.reload();
+    }
+    
+  
+  </script>
+</body>
+</html>
